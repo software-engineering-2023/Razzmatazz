@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" href="login.css">
+  <title>Login Page</title>
+  <style>
+    body {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  </style>
+
+  <meta charset="UTF-8">
+  <title>Daily UI | #001 - Sign Up</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body class="align">
+
+  <div class="grid align__item">
+
+    <div class="register">
+
+      <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" width="270" height="120" alt="Description of the image">
+
+      
+
+      <h2>Login</h2>
+
+      <form action="" method="post" class="form">
+
+        <div class="form__field">
+          <input type="text" id="username" placeholder="username">
+        </div>
+
+        <div class="form__field">
+          <input type="password" id="password" placeholder="••••••••••••">
+        </div>
+
+        <div class="form__field">
+          <input type="submit"value="Login" onclick="searchDatabase()">
+        </div>
+
+      </form>
+      <script>
+        function searchDatabase() {
+          // Retrieve the input values
+          var username = document.getElementById("username").value;
+          var password = document.getElementById("password").value;
+          var stakeholder="";
+      
+          // Perform the search in the database
+          // Replace this code with your actual database search implementation
+          // Example: You can use an array of objects to simulate a database
+          var database = [
+            { username: "mazenmizo", password: "badeen", stakeholder: "admin" },
+            { username: "zeinabus", password: "bus", stakeholder: "banker" },
+            { username: "omarhegazy", password: "nigga", stakeholder: "banker" },
+            { username: "shakib", password: "aldagh", stakeholder: "client" },
+            { username: "shalaby", password: "1234", stakeholder: "client" }
+          ];
+      
+          // Check if the input values match any entry in the database
+
+          var found = database.find(function(entry) {
+            return entry.username === username && entry.password === password;
+          });
+          
+      
+            function getUser(username) {
+            for (var i = 0; i < database.length; i++) {
+              if (database[i].username === username) {
+                return database[i];
+              }
+            }
+            return null; // User not found
+          }
+          // Handle the search result
+          if (found) {
+            alert("Login successful!");
+            // var user = getUser(username);
+            window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/admin.html';
+            // if(user.stakeholder==="admin"){
+            //   //<label class="ok-label">OK</label>
+            //  // window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/admin.html';
+            // }
+            // if(user.stakeholder==="banker")
+            //      console.log("banker ok");
+            // if(user.stakeholder==="client")
+            //      console.log("banker ok");
+           
+            // Perform any additional actions upon successful login
+          } else {
+            alert("Invalid email or password. Please try again. Or Sign Up");
+            // Perform any additional actions for failed login attempt
+          }
+      
+          // Prevent form submission (optional)
+          return false;
+        }
+      </script>
+
+      <p>Don't have an account? <a href="#">Sign Up</a></p>
+
+    </div>
+
+  </div>
+  
+
+</body>
+</html>

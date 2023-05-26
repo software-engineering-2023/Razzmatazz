@@ -1,0 +1,83 @@
+            <!DOCTYPE html>
+                <html lang="en">
+                <head>                    
+                <link rel="stylesheet" href="forum.css">
+                  <meta charset="UTF-8">
+                  <title>Forum</title>
+                  <style>
+                    body {
+                      background-color: #354152;
+                      color: #ffffff;
+                    }
+                    .post {
+                      margin-bottom: 20px;
+                      padding: 10px;
+                      border: 1px solid #ffffff;
+                      background-color: #354152;
+                    }
+                    .form__field {
+                      margin-bottom: 10px;
+                    }
+                    .form__field label {
+                      display: block;
+                    }
+                    .form__field textarea {
+                      width: 100%;
+                      resize: vertical;
+                    }
+                    .form__field input[type="submit"] {
+                      background-color: #4CAF50;
+                      color: #ffffff;
+                      padding: 10px 20px;
+                      border: none;
+                      cursor: pointer;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <h1>Forum</h1>
+                
+                  <h2>Create a new post</h2>
+                  <form id="new-post-form">
+                    <div class="form__field">
+                      <label for="post-content">Post Content:</label>
+                      <textarea id="post-content" name="post-content" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="form__field">
+                      <input type="submit" value="Submit">
+                    </div>
+                  </form>
+                
+                  <div id="posts-container">
+                    <div class="post">
+                      <h2>Post 1</h2>
+                      <p>This is the content of the first post.</p>
+                    </div>
+                
+                    <div class="post">
+                      <h2>Post 2</h2>
+                      <p>This is the content of the second post.</p>
+                    </div>
+                  </div>
+                
+                  <script>
+                    document.getElementById('new-post-form').addEventListener('submit', function(event) {
+                      event.preventDefault(); // Prevent form submission
+                
+                      var postContent = document.getElementById('post-content').value;
+                      if (postContent) {
+                        var newPost = document.createElement('div');
+                        newPost.classList.add('post');
+                        newPost.innerHTML = `
+                          <h2>New Post</h2>
+                          <p>${postContent}</p>
+                        `;
+                        var postsContainer = document.getElementById('posts-container');
+                        postsContainer.insertBefore(newPost, postsContainer.firstChild);
+                        document.getElementById('post-content').value = '';
+                      }
+                    });
+                  </script>
+                </body>
+                </html>
+                
