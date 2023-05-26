@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" href="admin.css">
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #354152;
+    }
+
+    #logo {
+      position: Top;
+      right: 25px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .username {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .form__field {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .form__field input[type="button"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #abd7b4;
+      color: #000000;
+      cursor: pointer;
+      padding: 10px 20px;
+      border: 1;
+      border-radius: 4px;
+    }
+    .signout {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    .signout input[type="button"] {
+      background-color: #abd7b4;
+      color: #000000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+    }
+    .upload-button {
+      background-color: #abd7b4; /* Set the background color to red */
+      color: #000000; /* Set the text color to white */
+      padding: 10px 20px; /* Add some padding for better visual appearance */
+      border: none; /* Remove the default button border */
+      border-radius: 4px; /* Add rounded corners */
+    }
+    .custom-label {
+      background-color: #edb131; /* Set the background color to red */
+      color: #000000; /* Set the text color to white */
+      padding: 10px 20px; /* Add some padding for better visual appearance */
+      border: none; /* Remove the default button border */
+      border-radius: 4px; /* Add rounded corners */
+    }
+  </style>
+</head>
+<body>
+  <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo" width="200" height="100">
+  <header>
+    <h1 class="title">Client</h1>
+    <div class="username">Username: ClientUser</div>
+  </header>
+
+  <form action="" method="post" class="form">
+
+    <div class="form__field">
+        <input type="button" value="Accounts" onclick="forum()">
+        <label id="postCount" class="custom-label">New Posts: 2</label>
+      </div>
+
+    <div class="form__field">
+      <input type="button" value="All Technical Issues" onclick="techIssues()">
+    </div>
+
+    <div class="form__field">
+        <input type="button" value="Suspended/Suspicious Accounts" onclick="susAccount()">
+      </div>
+
+ 
+
+      <div class="upload-button">
+        <input type="file" accept=".pdf">
+        <input type="submit" value="Upload T&C" onclick="upload()">
+      </div>
+
+
+  </form>
+
+  <div class="signout">
+    <input type="button" value="Sign Out" onclick="signOut()">
+  </div>
+  <!-- Rest of the admin dashboard content -->
+
+  <script>
+    function techIssues() {
+       window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/techIssues.html';
+    }
+    function susAccount() {
+       window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/susAccounts.html';
+    }
+    function signOut() {
+       window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/login.html';
+    }
+    function upload() {
+       alert("File Uploaded Successfully")
+    }
+    function forum() {
+        document.getElementById("postCount").textContent = "0";
+        window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/forum.html';
+    }
+  </script>
+</body>
+</html>
