@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="techIssues.css">
+
+<head>
+  <title>Loans</title>
+  <link rel="stylesheet" href="techIssues.css">
+
+  <style>
+  
+
+        #logo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 10px;
+      margin-right: 25px;
+    }
+    table {
+      width: 70%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: middle;
+    }
+    
+    
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    .button.reject {
+      background-color: #ff0000;
+    }
+  </style>
+  <script>
+    function removeRow(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+  </script>
+</head>
+<body>
+  <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo" width="200" height="100">
+  <h1>Pending Loans</h1>
+
+  <table>
+    <tr>
+      <th>Client name</th>
+      <th>Loan type</th>
+      <th>Loan id</th>
+      <th>Loan amount</th>
+      <th>Salary</th>
+      <th>Action</th>
+
+    </tr>
+    <tr>
+      <td>Mazoon</td>
+      <td>Personal Loan</td>
+      <td>123456</td>
+      <td>$10,000</td>
+      <td>$2,000</td>
+
+      <td>
+        <button class="button" onclick="removeRow(this)">Accept</button>
+        <button class="button reject" onclick="removeRow(this)">Reject</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Shalaboka</td>
+      <td>Home Loan</td>
+      <td>987654</td>
+      <td>$250,000</td>
+      <td>$5,000</td>
+
+      <td>
+        <button class="button" onclick="removeRow(this)">Accept</button>
+        <button class="button reject" onclick="removeRow(this)">Reject</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Zeina</td>
+      <td>Car Loan</td>
+      <td>567890</td>
+      <td>$20,000</td>
+      <td>$7,000</td>
+
+      <td>
+        <button class="button" onclick="removeRow(this)">Accept</button>
+        <button class="button reject" onclick="removeRow(this)">Reject</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Shakibo</td>
+      <td>Business Loan</td>
+      <td>345678</td>
+      <td>$100,000</td>
+      <td>$4,000</td>
+
+      <td>
+        <button class="button" onclick="removeRow(this)">Accept</button>
+        <button class="button reject" onclick="removeRow(this)">Reject</button>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

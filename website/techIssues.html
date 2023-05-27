@@ -1,0 +1,73 @@
+   <!DOCTYPE html>
+    <html>
+            <link rel="stylesheet" href="techIssues.css">
+    <head>
+        <title>Technical Issues</title>
+        <link rel="stylesheet" href="techIssues.css">
+      <style>
+        table {
+          border-collapse: collapse;
+        }
+    
+        th, td {
+          padding: 8px;
+          border: 1px solid black;
+        }
+    
+        #status1, #status2, #status3, #status4 {
+          display: inline-block;
+          margin-left: 10px;
+        }
+        #logo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 10px;
+      margin-right: 25px;
+    }
+      </style>
+    </head>
+    <body>
+        <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo" width="200" height="100">
+        <h1>Technical Issues</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Issue</th>
+            <th>Action</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Network connectivity problem - High Traffic</td>
+            <td><button onclick="resolveIssue(1)">Resolve Issue 1</button></td>
+            <td><span id="status1">Not Resolved</span></td>
+          </tr>
+          <tr>
+            <td>Application crashing frequently Error 326754</td>
+            <td><button onclick="resolveIssue(2)">Resolve Issue 2</button></td>
+            <td><span id="status2">Not Resolved</span></td>
+          </tr>
+          <tr>
+            <td>Server-S5463 Down</td>
+            <td><button onclick="resolveIssue(3)">Resolve Issue 3</button></td>
+            <td><span id="status3">Not Resolved</span></td>
+          </tr>
+          <tr>
+            <td>ATM-12321 is not working</td>
+            <td><button onclick="resolveIssue(4)">Resolve Issue 4</button></td>
+            <td><span id="status4">Not Resolved</span></td>
+          </tr>
+        </tbody>
+      </table>
+    
+      <script>
+        function resolveIssue(issueNumber) {
+          var statusElement = document.getElementById('status' + issueNumber);
+          statusElement.textContent = 'Resolved';
+        }
+      </script>
+    </body>
+    </html>
+    

@@ -1,0 +1,93 @@
+<html>
+<head>
+  <title>Banker PAGE</title>
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo" width="200" height="120">
+        <script>
+            function Loans() {
+                window.location.href = 'loan.html';
+            }
+            function Open() {
+               window.location.href = 'openAccount.html';
+            }
+            function Cards() {
+               window.location.href = 'Cards.html';
+            }
+            function Closed() {
+                window.location.href = 'Closed.html';
+            }
+            function Cheque() {
+                window.location.href = 'Cheque.html';
+            }
+            function signout() {
+               window.location.href = 'login.html';
+            }
+          </script>
+  <body>
+    <h1 class="title">Banker</h1>
+    <div class="username">Username: Banker User</div>
+    <button class="button"  onclick="Loans()"> Loans </button>
+    <button class="button"  onclick="Open()">Open Account</button >
+    <button class="button"  onclick="Cards()">Card</button>
+    <button class="button"  onclick="Closed()">Closed Accounts</button>
+    <button class="button"  onclick="Cheque()">Cheque Claims</button>
+    <button class="button"  onclick="signout()">signOut</button onclick="signout()">
+
+  </body>
+  </html>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #354152;
+    }
+    
+    .button {
+      background-color: #5ba15d;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+
+    
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    
+    .signOut {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    .signOut input[type="button"] {
+      background-color: #abd7b4;
+      color: #000000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+
+    }
+    
+  </style>
+</head>
+
+</html>

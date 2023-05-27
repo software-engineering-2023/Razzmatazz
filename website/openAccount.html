@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="techIssues.css">
+
+<head>
+  <title>Initializing Accounts</title>
+  <link rel="stylesheet" href="techIssues.css">
+
+  <style>
+      #logo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 10px;
+      margin-right: 25px;
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    .button.reject {
+      background-color: #ff0000;
+    }
+  </style>
+  <script>
+    function removeRow(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+  </script>
+</head>
+<body>
+  <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo" width="200" height="100">
+  <h1>Pending Accounts </h1>
+  <table>
+    <tr>
+      <th>Client name</th>
+      <th>National ID</th>
+      <th>Account number</th>
+      <th>Action</th>
+    </tr>
+    <tr>
+      <td>Hamoo</td>
+      <td>123456789</td>
+      <td>987654321</td>
+      <td>
+        <button class="button" onclick="removeRow(this)">Accept</button>
+        <button class="button reject" onclick="removeRow(this)">Reject</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Hamdaan</td>
+      <td>987654321</td>
+      <td>123456789</td>
+      <td>
+        <button class="button" onclick="removeRow(this)">Accept</button>
+        <button class="button reject" onclick="removeRow(this)">Reject</button>
+      </td>
+    </tr>
+    <tr>
+      <td>IbrahimHima</td>
+      <td>567890123</td>
+      <td>345678901</td>
+      <td>
+        <button class="button" onclick="removeRow(this)">Accept</button>
+        <button class="button reject" onclick="removeRow(this)">Reject</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Abosoma</td>
+      <td>345678901</td>
+      <td>567890123</td>
+      <td>
+        <button class="button" onclick="removeRow(this)">Accept</button>
+        <button class="button reject" onclick="removeRow(this)">Reject</button>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
