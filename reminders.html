@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="Reminders.css">
+  <meta charset="UTF-8">
+  <title>Bills</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #e0d8d8;
+    }
+
+    th {
+      background-color: #63e1ae;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reminders</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Bill name</th>
+        <th>Set Reminder</th>
+        <th>Make Payment</th>
+      </tr>
+    </thead>
+    <tbody id="reminders">
+      <tr>
+        <td>Electricity Bill</td>
+        <td><button onclick="openPopup('Electricity Bill')">Set Reminder</button></td>
+        <td><button onclick="makePayment(this)">Pay Now</button></td>
+      </tr>
+      <tr>
+        <td>Gas Bill</td>
+        <td><button onclick="openPopup('Gas Bill')">Set Reminder</button></td>
+        <td><button onclick="makePayment(this)">Pay Now</button></td>
+      </tr>
+      <tr>
+        <td>Water Bill</td>
+        <td><button onclick="openPopup('Water Bill')">Set Reminder</button></td>
+        <td><button onclick="makePayment(this)">Pay Now</button></td>
+      </tr>
+      <tr>
+        <td>Telephone Bill</td>
+        <td><button onclick="openPopup('Telephone Bill')">Set Reminder</button></td>
+        <td><button onclick="makePayment(this)">Pay Now</button></td>
+      </tr>
+      <tr>
+        <td>Loan Payment</td>
+        <td><button onclick="openPopup('Loan Payment')">Set Reminder</button></td>
+        <td><button onclick="makePayment(this)">Pay Now</button></td>
+      </tr>
+      <tr>
+        <td>Credit Card Bill</td>
+        <td><button onclick="openPopup('Credit Card Bill')">Set Reminder</button></td>
+        <td><button onclick="makePayment(this)">Pay Now</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="popup" style="display: none;">
+    <h2>Set Reminder</h2>
+    <label for="reminder-name">Reminder Name:</label>
+    <select id="reminder-name">
+      <option value="Gas Bill">Gas Bill</option>
+      <option value="Electricity Bill">Electricity Bill</option>
+      <option value="Water Bill">Water Bill</option>
+      <option value="Telephone Bill">Telephone Bill</option>
+      <option value="Loan Payment">Loan Payment</option>
+      <option value="Credit Card Bill">Credit Card Bill</option>
+    </select>
+
+    <label for="reminder-amount">Amount:</label>
+    <input type="text" id="reminder-amount">
+
+    <label for="reminder-date">Due Date:</label>
+    <input type="date" id="reminder-date">
+
+    <button onclick="addReminderFromPopup()">Add Reminder</button>
+    <button onclick="closePopup()">Cancel</button>
+  </div>
+
+  <script>
+    function openPopup(reminderName) {
+      var popup = document.getElementById('popup');
+      var reminderNameField = document.getElementById('reminder-name');
+      var reminderAmount = document.getElementById('reminder-amount');
+      var reminderDate = document.getElementById('reminder-date');
+
+      reminderNameField.value = reminderName;
+      reminderAmount.value = '';
+      reminderDate.value = '';
+
+      popup.style.display = 'block';
+    }
+
+    function closePopup() {
+      var popup = document.getElementById('popup');
+      popup.style.display = 'none';
+    }
+
+    function addReminderFromPopup() {
+      var reminderName = document.getElementById('reminder-name').value;
+      var amount = document.getElementById('reminder-amount').value;
+      var dueDate = document.getElementById('reminder-date').value;
+
+      var remindersTable = document.getElementById('reminders');
+      var newRow = remindersTable.insertRow();
+      var nameCell = newRow.insertCell();
+      var setReminderCell = newRow.insertCell();
+      var makePaymentCell = newRow.insertCell();
+
+      nameCell.innerHTML = reminderName;
+      setReminderCell.innerHTML = '<button onclick="openPopup(\'' + reminderName + '\')">Set Reminder</button>';
+      makePaymentCell.innerHTML = '<button onclick="makePayment(this)">Pay Now</button>';
+
+      checkDueDate(dueDate, newRow);
+      closePopup();
+
+      alert('Reminder set for ' + reminderName + '.');
+    }
+
+    function makePayment(button) {
+      var row = button.parentNode.parentNode;
+      
+      alert('Payment made successfully.');
+    }
+
+    function checkDueDate(dueDate, row) {
+      var currentDate = new Date();
+      var due = new Date(dueDate);
+
+      if (due <= currentDate) {
+        row.parentNode.removeChild(row);
+      }
+    }
+  </script>
+</body>
+</html>

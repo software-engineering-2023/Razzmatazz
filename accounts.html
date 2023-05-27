@@ -22,7 +22,15 @@
 
     .button {
       padding: 6px 12px;
-      background-color: #337ab7;
+      background-color: #b73345;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .button1 {
+      padding: 6px 12px;
+      background-color: #63e1ae;
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -36,6 +44,78 @@
       margin-top: 10px;
       margin-right: 25px;
     }
+    
+    .notification-button {
+      padding: 6px 12px;
+      background-color: #63e1ae;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    .report-issue-button {
+      margin-top: 10px;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 300px;
+    }
+    
+    .close {
+      color: #888;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .form-label {
+      margin-top: 10px;
+    }
+    
+    .form-input {
+      margin-top: 5px;
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .form-button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #b73345;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -48,6 +128,7 @@
       <tr>
         <th>No.</th>
         <th>Account Number</th>
+        <th>Account Details</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -55,74 +136,115 @@
       <tr>
         <td>1</td>
         <td>123456789</td>
-        <td>
-          <details>
-            <summary>Show Account Details</summary>
-            <div class="account-details">
-              <p>Account Number: 123456789</p>
-              <p>Account Type: Savings</p>
-              <p>Balance: $1000</p>
-              <!-- Add more account details as needed -->
-            </div>
-          </details>
-          <button class="button" onclick="removeRow(this)">Close Account</button>
-        </td>
+        <td><button class="button1" onclick="showAccountDetails(this)">Show Details</button></td>
+        <td><button class="button" onclick="removeRow(this)">Close Account</button></td>
       </tr>
       <tr>
         <td>2</td>
         <td>987654321</td>
-        <td>
-          <details>
-            <summary>Show Account Details</summary>
-            <div class="account-details">
-              <p>Account Number: 987654321</p>
-              <p>Account Type: Checking</p>
-              <p>Balance: $5000</p>
-              <!-- Add more account details as needed -->
-            </div>
-          </details>
-          <button class="button" onclick="removeRow(this)">Close Account</button>
-        </td>
+        <td><button class="button1" onclick="showAccountDetails(this)">Show Details</button></td>
+        <td><button class="button" onclick="removeRow(this)">Close Account</button></td>
       </tr>
       <tr>
         <td>3</td>
         <td>555555555</td>
-        <td>
-          <details>
-            <summary>Show Account Details</summary>
-            <div class="account-details">
-              <p>Account Number: 555555555</p>
-              <p>Account Type: Savings</p>
-              <p>Balance: $2500</p>
-              <!-- Add more account details as needed -->
-            </div>
-          </details>
-          <button class="button" onclick="removeRow(this)">Close Account</button>
-        </td>
+        <td><button class="button1" onclick="showAccountDetails(this)">Show Details</button></td>
+        <td><button class="button" onclick="removeRow(this)">Close Account</button></td>
       </tr>
       <tr>
         <td>4</td>
         <td>111111111</td>
-        <td>
-          <details>
-            <summary>Show Account Details</summary>
-            <div class="account-details">
-              <p>Account Number: 111111111</p>
-              <p>Account Type: Checking</p>
-              <p>Balance: $8000</p>
-              <!-- Add more account details as needed -->
-            </div>
-          </details>
-          <button class="button" onclick="removeRow(this)">Close Account</button>
-        </td>
+        <td><button class="button1" onclick="showAccountDetails(this)">Show Details</button></td>
+        <td><button class="button" onclick="removeRow(this)">Close Account</button></td>
       </tr>
     </tbody>
   </table>
+  
+  <button class="notification-button" onclick="showNotification()">Notifications</button>
+  <button class="notification-button" onclick="showNotification()">Bills</button>
+  
+  <div class="report-issue-button">
+    <button class="button" onclick="showCreditCardIssueModal()">Report Credit Card Issue</button>
+    <button class="button" onclick="showTechnicalIssueModal()">Report Technical Issues</button>
+  </div>
+  
+  <div id="creditCardIssueModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeCreditCardIssueModal()">&times;</span>
+      <h2>Report Credit Card Issue</h2>
+      <form>
+        <div class="form-label">Account Number:</div>
+        <input type="text" class="form-input" id="accountNumber" required>
+        <div class="form-label">Issue Type:</div>
+        <select class="form-input" id="issueType" required>
+          <option value="" disabled selected>Select Issue Type</option>
+          <option value="theft">Theft</option>
+          <option value="loss">Loss</option>
+          <option value="damage">Damage</option>
+        </select>
+        <button type="submit" class="form-button" onclick="showNotification1()">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+  <div id="technicalIssueModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeTechnicalIssueModal()">&times;</span>
+      <h2>Report Technical Issues</h2>
+      <form>
+      
+        <div class="form-label">Issue Details:</div>
+        <textarea class="form-input" id="issueDetails" required></textarea>
+        <button type="submit" class="form-button" onclick="showNotification2()">Submit</button>
+      </form>
+    </div>
+  </div>
   
   <script>
     function removeRow(button) {
       var row = button.parentNode.parentNode;
       row.parentNode.removeChild(row);
+    }
+    
+    function showAccountDetails(button) {
+      var row = button.parentNode.parentNode;
+      var detailsCell = row.querySelector('.account-details');
+      detailsCell.style.display = 'block';
+    }
+    
+    function showNotification() {
+      // Add your notification logic here
+      alert('This is a notification!');
+    }
+    function showNotification1() {
+      // Add your notification logic here
+      alert('Request Submitted!');
+    } 
+    function showNotification2() {
+      // Add your notification logic here
+      alert('Report Submitted!');
+    }
+    
+    function showCreditCardIssueModal() {
+      var modal = document.getElementById('creditCardIssueModal');
+      modal.style.display = 'block';
+    }
+    
+    function closeCreditCardIssueModal() {
+      var modal = document.getElementById('creditCardIssueModal');
+      modal.style.display = 'none';
+
+    }
+    
+    function showTechnicalIssueModal() {
+      var modal = document.getElementById('technicalIssueModal');
+      modal.style.display = 'block';
+    }
+    
+    function closeTechnicalIssueModal() {
+      var modal = document.getElementById('technicalIssueModal');
+      modal.style.display = 'none';
+
     }
   </script>
 </body>
