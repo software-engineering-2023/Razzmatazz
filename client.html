@@ -191,10 +191,25 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    #logo {
+      width: 200px;
+      height: 100px;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   </style>
 </head>
 <body>
-  <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo" width="200" height="100">
+  <div id="logo">
+    <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo" width="200" height="100">
+  </div>
+  </style>
+</head>
+<body>
+  
   <header>
     <h1 class="title">Client</h1>
     <div class="username">Username: ClientUser</div>
@@ -202,15 +217,13 @@
 
   <button class="notification-button" onclick="accountsOnClick()">Accounts</button>
   <button class="notification-button" onclick="showNotification()">Notifications</button>
-  <button class="notification-button" onclick="showNotification()">Bills</button>
+  <button class="notification-button" onclick="remindersOnClick()">Bills</button>
   <button class="notification-button" onclick="showNotification()">Apply For Credit Card</button> 
-  <button class="notification-button" onclick="redirectToLoanPage()">Apply For Loan</button>
-  <button class="notification-button" onclick="showNotification()">View Account Transactions</button> 
-  <button class="notification-button" onclick="showNotification()">View Credit Card Transactions</button> 
-  <button class="notification-button" onclick="showNotification()">View Points</button> 
-
-
-
+  <button class="notification-button" onclick="ApplyLoanOnClick()">Apply For Loan</button>
+  <button class="notification-button" onclick="transactionsClick() ">View Account Transactions</button> 
+  <button class="notification-button" onclick="creditcardtransactionsClick()">View Credit Card Transactions</button> 
+  <button class="notification-button" onclick=" pointsClick() ">View Points</button> 
+  <button class="notification-button" onclick="TransferClick() ">Transfer Money</button>
 
   <div class="report-issue-button">
     <button class="button" onclick="showCreditCardIssueModal()">Report Credit Card Issue</button>
@@ -253,7 +266,28 @@
 
   <script>
     function accountsOnClick() {
-      window.document.href = "accounts.html";
+      window.location.href = "accounts.html";
+    }
+    function remindersOnClick() {
+      window.location.href = "reminders.html";
+    }
+    function ApplyLoanOnClick() {
+      window.location.href = "loan.html";
+    }
+    function transactionsClick() {
+      window.location.href = "AccountTransactions.html";
+    }
+    function creditcardtransactionsClick() {
+      window.location.href = "CreditCardTransactions.html";
+    }
+    function pointsClick() {
+      window.location.href = "Points.html";
+    }
+    function TransferClick() {
+      window.location.href = "TransferMoney.html";
+    }
+    function notifClick() {
+      window.location.href = "notifications.html";
     }
 
     function removeRow(button) {
@@ -301,31 +335,15 @@
       var modal = document.getElementById('technicalIssueModal');
       modal.style.display = 'none';
     }
+    
     function redirectToLoanPage() {
-  window.location.href = "loan.html";
-}
-function showTechnicalIssueModal() {
-      var modal = document.getElementById('technicalIssueModal');
-      modal.style.display = 'block';
-    }
-    
-    function closeTechnicalIssueModal() {
-      var modal = document.getElementById('technicalIssueModal');
-      modal.style.display = 'none';
-
+      window.location.href = "loan.html";
     }
 
-    function showCreditCardIssueModal() {
-      var modal = document.getElementById('creditCardIssueModal');
-      modal.style.display = 'block';
+    function transferMoney() {
+      alert('Transfer Money clicked!');
+      // Add your transfer money logic here
     }
-    
-    function closeCreditCardIssueModal() {
-      var modal = document.getElementById('creditCardIssueModal');
-      modal.style.display = 'none';
-
-    }
-
   </script>
 </body>
 </html>
