@@ -1,8 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <link rel="stylesheet" href="admin.css">
   <meta charset="UTF-8">
   <title>Admin Dashboard</title>
@@ -82,6 +80,117 @@
       border: none; /* Remove the default button border */
       border-radius: 4px; /* Add rounded corners */
     }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #63e1ae;
+    }
+
+    .button {
+      padding: 6px 12px;
+      background-color: #b73345;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .button1 {
+      padding: 6px 12px;
+      background-color: #63e1ae;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    #logo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 10px;
+      margin-right: 25px;
+    }
+    
+    .notification-button {
+      padding: 6px 12px;
+      background-color: #63e1ae;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    .report-issue-button {
+      margin-top: 10px;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 300px;
+    }
+    
+    .close {
+      color: #888;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .form-label {
+      margin-top: 10px;
+    }
+    
+    .form-input {
+      margin-top: 5px;
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .form-button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #b73345;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -91,53 +200,132 @@
     <div class="username">Username: ClientUser</div>
   </header>
 
-  <form action="" method="post" class="form">
-
-    <div class="form__field">
-        <input type="button" value="Accounts" onclick="forum()">
-        <label id="postCount" class="custom-label">New Posts: 2</label>
-      </div>
-
-    <div class="form__field">
-      <input type="button" value="All Technical Issues" onclick="techIssues()">
-    </div>
-
-    <div class="form__field">
-        <input type="button" value="Suspended/Suspicious Accounts" onclick="susAccount()">
-      </div>
-
- 
-
-      <div class="upload-button">
-        <input type="file" accept=".pdf">
-        <input type="submit" value="Upload T&C" onclick="upload()">
-      </div>
+  <button class="notification-button" onclick="accountsOnClick()">Accounts</button>
+  <button class="notification-button" onclick="showNotification()">Notifications</button>
+  <button class="notification-button" onclick="showNotification()">Bills</button>
+  <button class="notification-button" onclick="showNotification()">Apply For Credit Card</button> 
+  <button class="notification-button" onclick="redirectToLoanPage()">Apply For Loan</button>
+  <button class="notification-button" onclick="showNotification()">View Account Transactions</button> 
+  <button class="notification-button" onclick="showNotification()">View Credit Card Transactions</button> 
+  <button class="notification-button" onclick="showNotification()">View Points</button> 
 
 
-  </form>
 
-  <div class="signout">
-    <input type="button" value="Sign Out" onclick="signOut()">
+
+  <div class="report-issue-button">
+    <button class="button" onclick="showCreditCardIssueModal()">Report Credit Card Issue</button>
+    <button class="button" onclick="showTechnicalIssueModal()">Report Technical Issues</button>
   </div>
-  <!-- Rest of the admin dashboard content -->
+  <div id="creditCardIssueModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeCreditCardIssueModal()">&times;</span>
+      <h2>Report Credit Card Issue</h2>
+      <form>
+        <div class="form-label">Account Number:</div>
+        <input type="text" class="form-input" id="accountNumber" required>
+        <div class="form-label">Issue Type:</div>
+        <select class="form-input" id="issueType" required>
+          <option value="" disabled selected>Select Issue Type</option>
+          <option value="theft">Theft</option>
+          <option value="loss">Loss</option>
+          <option value="damage">Damage</option>
+        </select>
+        <button type="submit" class="form-button" onclick="showNotification1()">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+  <div id="technicalIssueModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeTechnicalIssueModal()">&times;</span>
+      <h2>Report Technical Issues</h2>
+      <form>
+        <div class="form-label">Account Number:</div>
+        <input type="text" class="form-input" id="accountNumber" required>
+        <div class="form-label">Issue Description:</div>
+        <textarea class="form-input" id="issueDescription" required></textarea>
+        <button type="submit" class="form-button" onclick="showNotification2()">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Rest of the code -->
 
   <script>
-    function techIssues() {
-       window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/techIssues.html';
+    function accountsOnClick() {
+      window.document.href = "accounts.html";
     }
-    function susAccount() {
-       window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/susAccounts.html';
+
+    function removeRow(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
     }
-    function signOut() {
-       window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/login.html';
+    
+    function showAccountDetails(button) {
+      var row = button.parentNode.parentNode;
+      var detailsCell = row.querySelector('.account-details');
+      detailsCell.style.display = 'block';
     }
-    function upload() {
-       alert("File Uploaded Successfully")
+    
+    function showNotification() {
+      // Add your notification logic here
+      alert('This is a notification!');
     }
-    function forum() {
-        document.getElementById("postCount").textContent = "0";
-        window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/forum.html';
+    
+    function showNotification1() {
+      // Add your notification logic here
+      alert('Request Submitted!');
+    } 
+    
+    function showNotification2() {
+      // Add your notification logic here
+      alert('Report Submitted!');
     }
+    
+    function showCreditCardIssueModal() {
+      var modal = document.getElementById('creditCardIssueModal');
+      modal.style.display = 'block';
+    }
+    
+    function closeCreditCardIssueModal() {
+      var modal = document.getElementById('creditCardIssueModal');
+      modal.style.display = 'none';
+    }
+    
+    function showTechnicalIssueModal() {
+      var modal = document.getElementById('technicalIssueModal');
+      modal.style.display = 'block';
+    }
+    
+    function closeTechnicalIssueModal() {
+      var modal = document.getElementById('technicalIssueModal');
+      modal.style.display = 'none';
+    }
+    function redirectToLoanPage() {
+  window.location.href = "loan.html";
+}
+function showTechnicalIssueModal() {
+      var modal = document.getElementById('technicalIssueModal');
+      modal.style.display = 'block';
+    }
+    
+    function closeTechnicalIssueModal() {
+      var modal = document.getElementById('technicalIssueModal');
+      modal.style.display = 'none';
+
+    }
+
+    function showCreditCardIssueModal() {
+      var modal = document.getElementById('creditCardIssueModal');
+      modal.style.display = 'block';
+    }
+    
+    function closeCreditCardIssueModal() {
+      var modal = document.getElementById('creditCardIssueModal');
+      modal.style.display = 'none';
+
+    }
+
   </script>
 </body>
 </html>

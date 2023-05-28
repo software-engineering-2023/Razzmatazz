@@ -128,34 +128,54 @@
       <tr>
         <th>No.</th>
         <th>Account Number</th>
+        <th>Account Type</th>
         <th>Account Details</th>
-        <th>Action</th>
+        <th>Status</th>
+        <th>View Transactions</th>
+        <th>Credit Card Transactions</th>
+        <th></th>
       </tr>
     </thead>
     <tbody id="accounts">
       <tr>
         <td>1</td>
         <td>123456789</td>
+        <td>Savings</td>
         <td><button class="button1" onclick="showAccountDetails(this)">Show Details</button></td>
-        <td><button class="button" onclick="removeRow(this)">Close Account</button></td>
+        <td>Active</td>
+        <td><button class="button1" onclick="viewTransactions(this)">View Transactions</button></td>
+        <td><button class="button1" onclick="creditCardTransactions(this)">Credit Card Transactions</button></td>
+        <td><button class="button" onclick="updateAccountStatus(this)">Close Account</button></td>
       </tr>
       <tr>
         <td>2</td>
         <td>987654321</td>
+        <td>Current</td>
         <td><button class="button1" onclick="showAccountDetails(this)">Show Details</button></td>
-        <td><button class="button" onclick="removeRow(this)">Close Account</button></td>
+        <td>Active</td>
+        <td><button class="button1" onclick="viewTransactions(this)">View Transactions</button></td>
+        <td><button class="button1" onclick="creditCardTransactions(this)">Credit Card Transactions</button></td>
+        <td><button class="button" onclick="updateAccountStatus(this)">Close Account</button></td>
       </tr>
       <tr>
         <td>3</td>
         <td>555555555</td>
+        <td>Savings</td>
         <td><button class="button1" onclick="showAccountDetails(this)">Show Details</button></td>
-        <td><button class="button" onclick="removeRow(this)">Close Account</button></td>
+        <td>Active</td>
+        <td><button class="button1" onclick="viewTransactions(this)">View Transactions</button></td>
+        <td><button class="button1" onclick="creditCardTransactions(this)">Credit Card Transactions</button></td>
+        <td><button class="button" onclick="updateAccountStatus(this)">Close Account</button></td>
       </tr>
       <tr>
         <td>4</td>
         <td>111111111</td>
+        <td>Current</td>
         <td><button class="button1" onclick="showAccountDetails(this)">Show Details</button></td>
-        <td><button class="button" onclick="removeRow(this)">Close Account</button></td>
+        <td>Active</td>
+        <td><button class="button1" onclick="viewTransactions(this)">View Transactions</button></td>
+        <td><button class="button1" onclick="creditCardTransactions(this)">Credit Card Transactions</button></td>
+        <td><button class="button" onclick="updateAccountStatus(this)">Close Account</button></td>
       </tr>
     </tbody>
   </table>
@@ -163,88 +183,97 @@
   <button class="notification-button" onclick="showNotification()">Notifications</button>
   <button class="notification-button" onclick="showNotification()">Bills</button>
   
-  <div class="report-issue-button">
-    <button class="button" onclick="showCreditCardIssueModal()">Report Credit Card Issue</button>
-    <button class="button" onclick="showTechnicalIssueModal()">Report Technical Issues</button>
-  </div>
-  
-  <div id="creditCardIssueModal" class="modal">
+  <button class="button" onclick="openAccountModal()">Open Account</button>
+
+  <div id="myModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeCreditCardIssueModal()">&times;</span>
-      <h2>Report Credit Card Issue</h2>
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Open Account</h2>
       <form>
-        <div class="form-label">Account Number:</div>
-        <input type="text" class="form-input" id="accountNumber" required>
-        <div class="form-label">Issue Type:</div>
-        <select class="form-input" id="issueType" required>
-          <option value="" disabled selected>Select Issue Type</option>
-          <option value="theft">Theft</option>
-          <option value="loss">Loss</option>
-          <option value="damage">Damage</option>
+        <div class="form-label">Account Type:</div>
+        <select class="form-input" id="accountType" required>
+          <option value="" disabled selected>Select Account Type</option>
+          <option value="Savings">Savings</option>
+          <option value="Current">Current</option>
         </select>
-        <button type="submit" class="form-button" onclick="showNotification1()">Submit</button>
+        <button type="button" class="form-button" onclick="submitAccountType()">Submit</button>
       </form>
     </div>
   </div>
-  
-  <div id="technicalIssueModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeTechnicalIssueModal()">&times;</span>
-      <h2>Report Technical Issues</h2>
-      <form>
-      
-        <div class="form-label">Issue Details:</div>
-        <textarea class="form-input" id="issueDetails" required></textarea>
-        <button type="submit" class="form-button" onclick="showNotification2()">Submit</button>
-      </form>
-    </div>
-  </div>
-  
+
   <script>
     function removeRow(button) {
       var row = button.parentNode.parentNode;
       row.parentNode.removeChild(row);
     }
+
+    function openAccountModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
+    }
+
+    function submitAccountType() {
+      var accountType = document.getElementById("accountType").value;
+      var accountNumber = generateAccountNumber();
+
+      var table = document.getElementById("accounts");
+      var rowCount = table.rows.length;
+      var row = table.insertRow(rowCount);
+
+      var cell1 = row.insertCell(0);
+      cell1.innerHTML = rowCount;
+
+      var cell2 = row.insertCell(1);
+      cell2.innerHTML = accountNumber;
+
+      var cell3 = row.insertCell(2);
+      cell3.innerHTML = accountType;
+
+      var cell4 = row.insertCell(3);
+      cell4.innerHTML = '<button class="button1" onclick="showAccountDetails(this)">Show Details</button>';
+
+      var cell5 = row.insertCell(4);
+      cell5.innerHTML = "Active";
+
+      var cell6 = row.insertCell(5);
+      cell6.innerHTML = '<button class="button" onclick="viewTransactions(this)">View Transactions</button>';
+      
+      var cell7 = row.insertCell(6);
+      cell7.innerHTML = '<button class="button" onclick="creditCardTransactions(this)">Credit Card Transactions</button>';
+      
+      var cell8 = row.insertCell(7);
+      cell8.innerHTML = '<button class="button" onclick="updateAccountStatus(this)">Close Account</button>';
+
+      closeModal();
+    }
+
+    function generateAccountNumber() {
+      var min = 100000000;
+      var max = 999999999;
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function closeModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
     
-    function showAccountDetails(button) {
+    function updateAccountStatus(button) {
       var row = button.parentNode.parentNode;
-      var detailsCell = row.querySelector('.account-details');
-      detailsCell.style.display = 'block';
+      var statusCell = row.cells[4];
+      statusCell.innerHTML = "Inactive";
     }
     
-    function showNotification() {
-      // Add your notification logic here
-      alert('This is a notification!');
-    }
-    function showNotification1() {
-      // Add your notification logic here
-      alert('Request Submitted!');
-    } 
-    function showNotification2() {
-      // Add your notification logic here
-      alert('Report Submitted!');
+    function viewTransactions(button) {
+      var row = button.parentNode.parentNode;
+      var accountNumber = row.cells[1].innerHTML;
+      alert("Viewing transactions for account number: " + accountNumber);
     }
     
-    function showCreditCardIssueModal() {
-      var modal = document.getElementById('creditCardIssueModal');
-      modal.style.display = 'block';
-    }
-    
-    function closeCreditCardIssueModal() {
-      var modal = document.getElementById('creditCardIssueModal');
-      modal.style.display = 'none';
-
-    }
-    
-    function showTechnicalIssueModal() {
-      var modal = document.getElementById('technicalIssueModal');
-      modal.style.display = 'block';
-    }
-    
-    function closeTechnicalIssueModal() {
-      var modal = document.getElementById('technicalIssueModal');
-      modal.style.display = 'none';
-
+    function creditCardTransactions(button) {
+      var row = button.parentNode.parentNode;
+      var accountNumber = row.cells[1].innerHTML;
+      alert("Viewing credit card transactions for account number: " + accountNumber);
     }
   </script>
 </body>

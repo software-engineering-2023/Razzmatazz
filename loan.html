@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="admin.css">
+  <meta charset="UTF-8">
+  <title>Loan Application</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Same CSS styles as before */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #354152;
+    }
+
+    /* Rest of the CSS styles */
+    .form-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .form-input {
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 300px;
+      border-radius: 4px;
+      border: none;
+    }
+
+    .form-select {
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 300px;
+      border-radius: 4px;
+      border: none;
+    }
+
+    .form-submit {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #abd7b4;
+      color: #000000;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .upload-button {
+      padding: 10px 20px;
+      background-color: #abd7b4;
+      color: #000000;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    table {
+      margin-top: 20px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #63e1ae;
+    }
+  </style>
+</head>
+<body>
+  <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo" width="200" height="100">
+  <header>
+    <h1 class="title">Loan Application</h1>
+  </header>
+
+  <div class="form-container">
+    <form onsubmit="addLoanApplication(event)">
+      <input type="text" name="accountNumber" class="form-input" placeholder="Account Number" required>
+      <input type="text" name="loanAmount" class="form-input" placeholder="Loan Amount" required>
+      <select name="loanType" class="form-input" required>
+        <option value="" disabled selected>Loan Type</option>
+        <option value="car">Car Loan</option>
+        <option value="personal">Personal Loan</option>
+      </select>
+      <button type="button" class="upload-button" onclick="uploadProofOfIncome()">Upload Proof of Income</button>
+      <input type="submit" value="Apply for Loan" class="form-submit">
+    </form>
+  </div>
+
+  <table id="loanTable">
+    <tr>
+      <th>Account Number</th>
+      <th>Loan Amount</th>
+      <th>Loan Type</th>
+      <th>Status</th>
+    </tr>
+  </table>
+
+  <script>
+    function addLoanApplication(event) {
+      event.preventDefault();
+
+      // Retrieve form input values
+      var accountNumber = document.getElementsByName('accountNumber')[0].value;
+      var loanAmount = document.getElementsByName('loanAmount')[0].value;
+      var loanType = document.getElementsByName('loanType')[0].value;
+
+      // Convert loan amount to a number and increment by 1000
+      loanAmount = parseInt(loanAmount) + 1000;
+
+      // Create a new row in the table
+      var table = document.getElementById('loanTable');
+      var newRow = table.insertRow();
+
+      // Insert cells in the new row
+      var accountNumberCell = newRow.insertCell(0);
+      var loanAmountCell = newRow.insertCell(1);
+      var loanTypeCell = newRow.insertCell(2);
+      var statusCell = newRow.insertCell(3);
+
+      // Set cell values
+      accountNumberCell.innerHTML = accountNumber;
+      loanAmountCell.innerHTML = loanAmount;
+      loanTypeCell.innerHTML = loanType;
+      statusCell.innerHTML = 'Pending';
+
+      // Clear form inputs
+      document.getElementsByName('accountNumber')[0].value = '';
+      document.getElementsByName('loanAmount')[0].value = '';
+      document.getElementsByName('loanType')[0].value = '';
+    }
+
+    function uploadProofOfIncome() {
+      // Add your code to handle the proof of income upload
+      alert('Upload Proof of Income');
+    }
+  </script>
+</body>
+</html>
