@@ -1,114 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <link rel="stylesheet" href="login.css">
   <title>Login Page</title>
   <style>
     body {
-  margin-left: auto;
-  margin-right: auto;
-}
-
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #logo {
+      position: Top;
+      right: 25px;
+    }
+    .register {
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .register.show {
+      opacity: 1;
+    }
+    .btn {
+      padding: 1px 20px;
+      font-size: 24px;
+      text-align: center;
+      cursor: pointer;
+      outline: none;
+      color: #000000;
+      background-color: #abd7b4;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 0px #999;
+    }
+    .btn:hover{
+      background-color: #67816c;
+    }
+    .btn:active{
+      background-color: #abd7b4;
+      box-shadow: 0 0px #666;
+      transform: translateY(4px);
+    }
   </style>
-
   <meta charset="UTF-8">
   <title>Daily UI | #001 - Sign Up</title>
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 <body class="align">
-
   <div class="grid align__item">
-
     <div class="register">
-
-      <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" width="270" height="120" alt="Description of the image">
-
-      
-
+      <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" width="270" height="160" alt="Description of the image">
       <h2>Login</h2>
-
       <form action="" method="post" class="form">
-
         <div class="form__field">
           <input type="text" id="username" placeholder="username">
         </div>
-
         <div class="form__field">
-          <input type="password" id="password" placeholder="••••••••••••">
-        </div>
-
-        <div class="form__field">
-          <input type="submit"value="Login" onclick="searchDatabase()">
+          <input type="password" id="password" placeholder="password">
         </div>
 
       </form>
-      <script>
-        function searchDatabase() {
-          // Retrieve the input values
-          var username = document.getElementById("username").value;
-          var password = document.getElementById("password").value;
-          var stakeholder="";
-      
-          // Perform the search in the database
-          // Replace this code with your actual database search implementation
-          // Example: You can use an array of objects to simulate a database
-          var database = [
-            { username: "mazenmizo", password: "badeen", stakeholder: "admin" },
-            { username: "zeinabus", password: "bus", stakeholder: "banker" },
-            { username: "omarhegazy", password: "nigga", stakeholder: "banker" },
-            { username: "shakib", password: "aldagh", stakeholder: "client" },
-            { username: "shalaby", password: "1234", stakeholder: "client" }
-          ];
-      
-          // Check if the input values match any entry in the database
+      <div>
+        <button class="btn">Login</button>
+      </div>
 
-          var found = database.find(function(entry) {
-            return entry.username === username && entry.password === password;
-          });
-          
-      
-            function getUser(username) {
-            for (var i = 0; i < database.length; i++) {
-              if (database[i].username === username) {
-                return database[i];
-              }
-            }
-            return null; // User not found
-          }
-          // Handle the search result
-          if (found) {
-            alert("Login successful!");
-            // var user = getUser(username);
-            window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/admin.html';
-            // if(user.stakeholder==="admin"){
-            //   //<label class="ok-label">OK</label>
-            //  // window.location.href = 'file:///C:/Users/Yahia%20Shalaby/Desktop/UNI/SE/website/admin.html';
-            // }
-            // if(user.stakeholder==="banker")
-            //      console.log("banker ok");
-            // if(user.stakeholder==="client")
-            //      console.log("banker ok");
-           
-            // Perform any additional actions upon successful login
-          } else {
-            alert("Invalid email or password. Please try again. Or Sign Up");
-            // Perform any additional actions for failed login attempt
-          }
-      
-          // Prevent form submission (optional)
-          return false;
-        }
-      </script>
-
-      <p>Don't have an account? <a href="#">Sign Up</a></p>
-
+      <div>
+        <br>
+        <button class=" transparent-btn" onclick="forgot()">Forgot Password</button>
+      </div>
+      <p>Don't have an account? <a link href="signup.html">Sign Up</a></p>
     </div>
-
   </div>
-  
+  <script>
+    const myButton = document.querySelector('.btn');
+    myButton.addEventListener('click', loginOnClick);
 
+    function loginOnClick() {
+      if (searchDatabase()) {
+        var stake = getStakeholder(document.getElementById("username").value);
+        if (stake === "admin") {
+          var currentPath = window.location.pathname;
+          var newPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+          var filePath = newPath + 'admin.html';
+           window.location.href = filePath;
+        } else if (stake === "client") {
+          var currentPath = window.location.pathname;
+          var newPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+          var filePath = newPath + 'client.html';
+        } else if (stake === "banker") {
+          var currentPath = window.location.pathname;
+          var newPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+          var filePath = newPath + 'banker.html';
+        } else {
+          alert("User not found, Please Sign up");
+        }
+      } else {
+        alert("User not found, Please Sign up");
+      }
+    }
+
+    function searchDatabase() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      var database = [
+        { username: "mazenmizo", password: "mazen", stakeholder: "admin" },
+        { username: "zeinabus", password: "bus", stakeholder: "banker" },
+        { username: "omarhegazy", password: "liver", stakeholder: "banker" },
+        { username: "shakib", password: "aldagh", stakeholder: "client" },
+        { username: "shalaby", password: "1234", stakeholder: "client" }
+      ];
+
+      for (var i = 0; i < database.length; i++) {
+        if (database[i].username === username && database[i].password === password) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function getStakeholder(username) {
+      var database = [
+        { username: "mazenmizo", password: "mazen", stakeholder: "admin" },
+        { username: "zeinabus", password: "bus", stakeholder: "banker" },
+        { username: "omarhegazy", password: "liver", stakeholder: "banker" },
+        { username: "shakib", password: "aldagh", stakeholder: "client" },
+        { username: "shalaby", password: "1234", stakeholder: "client" }
+      ];
+
+      for (var i = 0; i < database.length; i++) {
+        if (database[i].username === username) {
+          return database[i].stakeholder;
+        }
+      }
+      return null; // User not found
+    }
+    function forgot(){
+      alert("An email has been sent to reset your password. Please check your inbox");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var registerForm = document.querySelector(".register");
+      registerForm.classList.add("show");
+    });
+  </script>
 </body>
 </html>

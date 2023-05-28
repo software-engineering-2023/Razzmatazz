@@ -26,17 +26,24 @@
                       resize: vertical;
                     }
                     .form__field input[type="submit"] {
-                      background-color: #4CAF50;
-                      color: #ffffff;
+                      background-color: #abd7b4;
+                      color: #000000;
                       padding: 10px 20px;
                       border: none;
                       cursor: pointer;
+                    }
+                    #logo {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    margin-top: 10px;
+                    margin-right: 25px;
                     }
                   </style>
                 </head>
                 <body>
                   <h1>Forum</h1>
-                
+                  <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo" width="200" height="100">
                   <h2>Create a new post</h2>
                   <form id="new-post-form">
                     <div class="form__field">
@@ -50,13 +57,13 @@
                 
                   <div id="posts-container">
                     <div class="post">
-                      <h2>Post 1</h2>
-                      <p>This is the content of the first post.</p>
+                      <h2>Post1 by: mazenKamal418 Date:10/03/2023</h2>
+                      <p>I forgot my password, how can I reset it???</p>
                     </div>
                 
                     <div class="post">
-                      <h2>Post 2</h2>
-                      <p>This is the content of the second post.</p>
+                      <h2>Post2 by: hegazy2003 Date:26/05/2023</h2>
+                      <p>I am new to this app. Can someone tell me how to change my default currency??</p>
                     </div>
                   </div>
                 
@@ -69,7 +76,7 @@
                         var newPost = document.createElement('div');
                         newPost.classList.add('post');
                         newPost.innerHTML = `
-                          <h2>New Post</h2>
+                          <h2>AdminPost</h2>
                           <p>${postContent}</p>
                         `;
                         var postsContainer = document.getElementById('posts-container');

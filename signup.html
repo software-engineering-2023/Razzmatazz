@@ -1,0 +1,158 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <link rel="stylesheet" href="signup.css">
+    <title>Sign-Up Page</title>
+    <style>
+        body {
+        margin-left: auto;
+        margin-right: auto;
+        }
+        #logo {
+        position: Top;
+        right: 25px;
+        }
+        .register {
+      opacity: 0;
+      transition: opacity 0.5s, transform 0.5s;
+      transform: scale(0.8);
+    }
+    .register.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+        .btn {
+        padding: 1px 20px;
+        font-size: 24px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        color: #000000;
+        background-color: #abd7b4;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 0px #999;
+        }
+        .btn:hover{
+        background-color: #67816c;
+        }
+        .btn:active{
+        background-color: #abd7b4;
+        box-shadow: 0 0px #666;
+        transform: translateY(4px);
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body class="align">
+    <div class="grid align__item">
+        <div class="register">
+        <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" width="270" height="120" alt="Description of the image">
+        <h2>Sign Up</h2>
+        <form action="" method="post" class="form">
+            <div class="form__field">
+            <input type="text" id="username" placeholder="username" required>
+            </div>
+            <div class="form__field">
+                <input type="email" id="email" placeholder="name@mail.com" required>
+            </div>
+            <div class="form__field">
+            <input type="password" id="password1" placeholder="password" required>
+            </div>
+            <div class="form__field">
+                <input type="password" id="password2" placeholder="confirm password" required>
+            </div>
+
+        </form>
+        <div>
+            <button class="btn">Create Account</button>
+        </div>
+
+        <!-- <div> -->
+            <!-- <br>
+            <button class=" transparent-btn" onclick="forgot()">Forgot Password</button>
+        </div> -->
+        <!-- <p>Don't have an account? <a href="#">Sign Up</a></p> -->
+        </div>
+    </div>
+    <script>
+        const myButton = document.querySelector('.btn');
+        myButton.addEventListener('click', signupOnClick);
+
+        function signupOnClick() {
+    var username = document.getElementById("username").value;
+    var password1 = document.getElementById("password1").value;
+    var password2 = document.getElementById("password2").value;
+    var email = document.getElementById("email").value;
+
+    // Check if all required fields are filled
+    if (username.trim() === '' || password1.trim() === '' || email.trim() === ''|| password2.trim() === '') {
+        alert("Please fill in all fields.");
+        return;
+    }
+        if (searchDatabase()) {
+            alert("Username Already Exists. Please Choose Another Username!");
+            return;
+        }
+        var password1 = document.getElementById("password1").value;
+        var password2 = document.getElementById("password2").value;
+        if(password1===password2){
+            var currentPath = window.location.pathname;
+          var newPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+          var filePath = newPath + 'client.html';
+        }else{
+            alert("Entered passwords are not the same. Please re-enter your password!");
+            return;
+        }
+    }
+
+        function searchDatabase() {
+        var username = document.getElementById("username").value;
+        
+
+        var database = [
+            { username: "mazenmizo", password: "mazen", stakeholder: "admin" },
+            { username: "zeinabus", password: "bus", stakeholder: "banker" },
+            { username: "omarhegazy", password: "liver", stakeholder: "banker" },
+            { username: "shakib", password: "aldagh", stakeholder: "client" },
+            { username: "shalaby", password: "1234", stakeholder: "client" }
+        ];
+
+        for (var i = 0; i < database.length; i++) {
+            if (database[i].username === username) {
+            return true;
+            }
+        }
+        return false;
+        }
+
+        function getStakeholder(username) {
+        var database = [
+            { username: "mazenmizo", password: "mazen", stakeholder: "admin" },
+            { username: "zeinabus", password: "bus", stakeholder: "banker" },
+            { username: "omarhegazy", password: "liver", stakeholder: "banker" },
+            { username: "shakib", password: "aldagh", stakeholder: "client" },
+            { username: "shalaby", password: "1234", stakeholder: "client" }
+        ];
+
+        for (var i = 0; i < database.length; i++) {
+            if (database[i].username === username) {
+            return database[i].stakeholder;
+            }
+        }
+        return null; // User not found
+        }
+        function forgot(){
+        alert("An email has been sent to reset your password. Please check your inbox");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+        var registerForm = document.querySelector(".register");
+        registerForm.classList.add("show");
+        });
+    </script>
+    </body>
+    </html>

@@ -63,7 +63,7 @@ input::placeholder {
 }
 
 h2 {
-  font-size: 2.75rem;
+  font-size: 1.75rem;
   font-weight: 100;
   margin: 0 0 1rem;
   text-transform: uppercase;
@@ -106,4 +106,16 @@ a {
   color: #fff;
   margin-bottom: 6rem;
   width: 100%;
-}/*# sourceMappingURL=signup.css.map */
+}/*# sourceMappingURL=login.css.map */
+.transparent-btn {
+  background-color: transparent;
+  border: none;
+  color: #7e8ba3;
+  font: 300 1rem/1.5 Helvetica Neue, sans-serif;
+}
+
+.transparent-btn:hover {
+  font: 300 1rem/1.5 Helvetica Neue, sans-serif;
+  color: #000000;
+  transition: color 0.3s ease;
+}
