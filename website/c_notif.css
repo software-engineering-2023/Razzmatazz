@@ -1,0 +1,115 @@
+/* Rest of your CSS styles */
+
+.notification-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+    background-color: #354152;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .table-container {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #63e1ae;
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #63e1ae;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .notification-toggle {
+    display: none;
+  }
+  
+  .notification-label {
+    display: none;
+  }
+  
+  .notification-window {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background-color: #f2f2f2;
+    color: #333;
+    transition: right 0.3s ease-in-out;
+    z-index: 1;
+  }
+  
+  .notification-content {
+    padding: 20px;
+  }
+  
+  .notification-message {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .notification-date {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .notification-button {
+    display: flex;
+    align-items: center;
+    background-color: #f6f6f6;
+    padding: 10px;
+    color: #333;
+  }
+  #logo {
+    display: block;
+    margin: 0 auto; 
+    width: 360px;
+    height: 300px;
+  }
+    
+  
+  .notification-icon {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .notification-text {
+    font-weight: bold;
+  }
+  
+  .notification-toggle:checked ~ .notification-window {
+    right: 0;
+  }
+  
+  /* Rest of your CSS styles */
+  

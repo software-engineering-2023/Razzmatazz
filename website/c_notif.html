@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Notifications</title>
+  <link rel="stylesheet" type="text/css" href="c_notif.css">
+</head>
+<body>
+  <input type="checkbox" id="notificationToggle" class="notification-toggle">
+  <label for="notificationToggle" class="notification-label"></label>
+
+  <button id="refreshButton">Refresh</button>
+
+  <div class="notification-window">
+    <div class="notification-content">
+      <span class="notification-close">&times;</span>
+      <h2>New Notification</h2>
+      <p>Edfa3 el 3alek ya mazen.</p>
+    </div>
+  </div>
+
+  <div class="notification-container">
+    <div class="table-container">
+      <img src="shalabanky-low-resolution-logo-color-on-transparent-background.png" id="logo" alt="Logo">
+      <h1>Notifications</h1>
+      <table id="notificationsTable">
+        <thead>
+          <tr>
+            <th>Message</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>New transfer received</td>
+            <td>May 28, 2023 - 10:30 AM</td>
+          </tr>
+          <tr>
+            <td>Credit card payment due</td>
+            <td>May 27, 2023 - 09:00 AM</td>
+          </tr>
+          <tr>
+            <td>Account balance updated</td>
+            <td>May 26, 2023 - 03:15 PM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const refreshButton = document.getElementById("refreshButton");
+    const notificationToggle = document.getElementById("notificationToggle");
+    const notificationLabel = document.querySelector(".notification-label");
+    function closeNotificationWindow() {
+      const notificationWindow = document.querySelector(".notification-window");
+      notificationWindow.style.right = "-400px";
+    }
+
+    refreshButton.addEventListener("click", () => {
+      const notificationButton = document.createElement("div");
+      notificationButton.setAttribute("id", "notificationButton");
+      notificationButton.classList.add("notification-button");
+      notificationButton.innerHTML = `
+        <span class="notification-icon">&#x1F514;</span>
+        <span class="notification-text">1 New Notification</span>
+      `;
+      document.body.insertBefore(notificationButton, document.body.firstChild);
+      notificationToggle.checked = true;
+    }
+    );
+  </script>
+</body>
+</html>
